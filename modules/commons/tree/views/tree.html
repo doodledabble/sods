@@ -1,0 +1,15 @@
+<ul>
+	<li data-ng-repeat="child in family.subContainers" data-ng-init="child.collapsed=true" data-ng-show="!loadingList"> 
+		<i class="collapsed" data-ng-show="child.collapsed" data-ng-click="getContainers({node:child})"></i>
+		<i class="expanded"	data-ng-show="child.subContainers.length && !child.collapsed" data-ng-click="getContainers({node:child})"></i>
+		<i class="normal" data-ng-show="!child.collapsed && child.subContainers.length == 0"></i>
+		<span class="text" data-ng-click="addElement({node:child})">{{child.name}}</span>
+		<data-tree data-ng-show="!child.collapsed" data-approvers="approvers" data-family="child" data-containers="containers"></data-tree>
+	</li>
+	<!-- <div data-ng-if="!loadingList && (family.subContainers|ExcludeList:approvers).length==0" translate>
+		No more {{name | translate}} are available for selection.
+	</div> -->
+	<div class="loading-indicator center-text" data-ng-if="loadingList" translate>
+		Loading {{name | translate}} ...
+	</div>
+</ul>

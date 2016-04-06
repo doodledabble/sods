@@ -1,0 +1,94 @@
+<data-feedback-dir data-ng-show="$root.isSodFeedback"></data-feedback-dir>
+<div class="panel padding-5">
+
+<span class="btn-group margin-bottom-2">
+	<button id="createSodsButton" class="btn btn-default margin-right-6" data-ng-click="createDummySod()" translate>Create Sod</button>
+	<button id="removeSodsButton" class="btn btn-default margin-right-10" data-ng-click="deleteSod(sodsToDelete)" data-ng-disabled="!sodSelected()" translate>Remove Sods</button>
+	<button id="refreshSodsButton" class="btn btn-default margin-right-6" data-ng-click="refreshCache()" translate>Refresh</button>
+</span>
+
+<input class="search-control margin-bottom-10" style="clear:both" placeholder="{{'Search for Sods...' | translate}}" data-ng-model="data.query" data-ng-change="searchSodsHandler()" data-ng-click="$root.emitClickEvent('sodlist', $event)" ng-model-options="{debounce: 1000}" />
+<table class="table table-hover">
+	<thead>
+		<tr class="header-background no-select cursor-default">
+			<th style="width:3%"><input type="checkbox" data-ng-checked="selectAll" data-ng-click="selectAllSods()"/></th>
+			<th ng-click="getSortOrderSods('name')" style="width:24%"><translate>Name</translate><span data-ng-if="(sodsSortBy=='name')"class="{{sodsSortClass}}"></span></th>
+			<th  ng-click="getSortOrderSods('description')" style="width:24%" translate><translate>Description</translate><span data-ng-if="(sodsSortBy=='description')" class="{{sodsSortClass}}"></span></th>
+			<th style="width:24%" translate>Conflicting Roles</th>
+			<th  ng-click="getSortOrderSods('roleLevel')" style="width:24%" translate><translate>Role Level</translate><span data-ng-if="(sodsSortBy=='roleLevel')" class="{{sodsSortClass}}"></span></th>
+		</tr>
+	</thead>
+	<tfoot>
+       <td colspan="6">
+          <div ng-class="{disabled: (currentPage) == 0 && (data.nextIndex) == 0}" class="pagination pull-left">
+              <span ng-class="{disabled: (currentPage) == 0}">
+                  <span class="arrow-previous" title="Previous" ng-click="previousPage()">&lt;</span>
+              </span>
+              
+              <span class="margin-right-5">
+                  Page 
+              </span>
+          
+              <span ng-repeat="n in range(totalPages) "
+                  ng-class="{active: n == currentPage}"
+              ng-click="setPage()">
+                  <a class="margin-right-5" href ng-bind="n + 1">1</a>
+              </span>
+              
+              <span ng-class="{disabled: disablePagination() }">
+                  <span class="arrow-next" title="Next" ng-click="nextPage()">&gt;</span>
+              </span>
+          </div>
+       </td>
+    </tfoot>
+	<tbody>
+		<tr data-ng-if="getDummySod()">
+			<td colspan="5" class="sod-editor-row">
+				<data-sod-editor data-sod="getDummySod()"></data-sod-editor>
+			</td>
+		</tr>
+		<tr data-ng-if="NewSodPresent()">
+			<td colspan="5" class="sod-editor-row">
+				<data-sod-editor data-sod="getNewSod()"></data-sod-editor>
+			</td>
+		</tr>
+		<tr data-ng-repeat-start="sod in data.sodList" >
+			<td><input type="checkbox" data-ng-checked="toBeDeleted(sod)" data-ng-click="toggleSelection(sod)" /></td>
+			<td class="no-select"><a data-ng-click="selectSod(sod,$event)" class="cursor-pointer" tabindex="0" ng-keydown="detectSpace($event)?selectSod(sod,$event):void(0)">{{getLocalizedValue(sod.name)}}</a></td>
+			<td class="no-select cursor-default">{{getLocalizedValue(sod.description)}}</td>
+			<td class="no-select cursor-default">
+				<table cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
+					<tbody>
+						<tr>
+							<td align="left" style="vertical-align: middle;">
+								<div id="conflicting_role_image" class="conflicting_role_image"></div>
+							</td>
+							<td align="left" 
+								style="vertical-align: middle;">
+								<div style="white-space: nowrap;">
+									<div style="font-size: 12px;padding-left: 3px;">{{sod.roles[0].name}}</div>
+									<div style="font-size: 12px;padding-left: 3px;">{{sod.roles[1].name}}</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</td>
+			<td class="no-select cursor-default">{{sod.roleLevel}}</td>
+		</tr>
+		<tr data-ng-repeat-end class="no-hover" data-ng-if="isSelectedSod(sod)">
+			<td colspan="5" class="sod-editor-row">
+				<data-sod-editor data-sod="sod"></data-sod-editor>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="5" class="center-text loading-indicator" data-ng-show="data.sodListLoading"></td>
+			<td colspan="5" class="center-text" data-ng-show="!data.sodListLoading&&data.sodList.length==0" translate>
+				No Sods are found.
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+</div>

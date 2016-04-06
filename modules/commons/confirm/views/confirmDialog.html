@@ -1,0 +1,12 @@
+<div data-ng-if="confirmDialogmessage != null">
+	<div class="layerOverlay" ></div>
+	<div class="confirm-dialog" ng-keydown="detectEsc($event)?cancel():void(0)">
+		<div>
+			<p>{{confirmDialogmessage | translate}}</p>
+		</div>
+		<div >
+			<button  id="rightButton" data-ng-click="ok()" ng-keydown="detectTab($event)?focusLeftButton():void(0)">{{rightButton | translate}}</button>
+			<button  id="leftButton" data-ng-click="cancel()" ng-keydown="detectTab($event)?focusRightButton():void(0)" do-focus="true">{{leftButton | translate}}</button>
+		</div>
+	</div>
+</div>

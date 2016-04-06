@@ -1,0 +1,13 @@
+validationSuccess: {{validationSuccess}}
+<div data-ng-class="parentClass" data-ng-show="enabled">
+	<span class="icon-20" data-ng-class="getValidationResultClass()"></span>
+	<div data-ng-if="!isValidationSuccess()">
+		<div class="validation-error-topnotch">
+		</div>
+		<div class="validation-error-message">
+			<div>
+				{{getValidationMessage()}}
+			</div>
+		</div>
+	</div>
+</div>

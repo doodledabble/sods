@@ -1,0 +1,130 @@
+<div class="row">
+	<div class="col-xs-11">
+		<div class="form-group">
+			<div class="row fieldrow">
+				<div class="col-xs-12 col-sm-4 col-lg-4" translate="">
+					<div class="localeFieldsToggle" data-ng-click="toggleLocaleFields()" tabindex="0" ng-keydown="detectSpace($event)?toggleLocaleFields():void(0)">
+						<span class="icon-normal icon-downward-triangle" data-ng-show="localeFieldsEnabled"></span>
+						<span class="icon-normal icon-right-triangle" data-ng-hide="localeFieldsEnabled"></span>
+						<label translate>{{titleCaseFieldLabel}}<sup>*</sup></label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-8 col-lg-8">
+					<div data-ng-hide="localeFieldsEnabled">
+						<input id="sodFieldInput" type="text" class="form-control" data-ng-model="fieldvalues.en"/>
+					</div>
+				</div>
+			</div>
+			<div data-ng-show="localeFieldsEnabled">
+				<div class="row fieldrow">
+                    <div class="col-xs-12 col-sm-4 col-lg-4" translate>
+                        Chinese(China)
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-lg-8">
+                        <input type="text" class="form-control" data-ng-model="fieldvalues['zh_CN']"  />
+                    </div>
+				</div>
+				<div class="row fieldrow">
+                    <div class="col-xs-12 col-sm-4 col-lg-4" translate>
+                        Chinese(Taiwan)
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-lg-8">
+                        <input type="text" class="form-control" data-ng-model="fieldvalues['zh_TW']"  />
+                    </div>
+				</div>
+				<div class="row fieldrow">
+						<div class="col-xs-12 col-sm-4 col-lg-4" translate>
+							Danish
+						</div>
+						<div class="col-xs-12 col-sm-8 col-lg-8">
+							<input type="text" class="form-control" data-ng-model="fieldvalues.da"  />
+						</div>
+				</div>
+				<div class="row fieldrow">
+						<div class="col-xs-12 col-sm-4 col-lg-4" translate>
+							Dutch
+						</div>
+						<div class="col-xs-12 col-sm-8 col-lg-8">
+							<input type="text" class="form-control" data-ng-model="fieldvalues.nl"  />
+						</div>
+				</div>
+				<div class="row fieldrow">
+						<div class="col-xs-12 col-sm-4 col-lg-4" translate>
+							English*
+						</div>
+						<div class="col-xs-12 col-sm-8 col-lg-8">
+							<input type="text" class="form-control" data-ng-model="fieldvalues.en"  />
+						</div>
+				</div>
+				<div class="row fieldrow">
+						<div class="col-xs-12 col-sm-4 col-lg-4" translate>
+							French
+						</div>
+						<div class="col-xs-12 col-sm-8 col-lg-8">
+							<input type="text" class="form-control" data-ng-model="fieldvalues.fr"  />
+						</div>
+				</div>
+				<div class="row fieldrow">
+						<div class="col-xs-12 col-sm-4 col-lg-4" translate>
+							German
+						</div>
+						<div class="col-xs-12 col-sm-8 col-lg-8">
+							<input type="text" class="form-control" data-ng-model="fieldvalues.de"  />
+						</div>
+				</div>
+				<div class="row fieldrow">
+						<div class="col-xs-12 col-sm-4 col-lg-4" translate>
+							Italian
+						</div>
+						<div class="col-xs-12 col-sm-8 col-lg-8">
+							<input type="text" class="form-control" data-ng-model="fieldvalues.it"  />
+						</div>
+				</div>
+				<div class="row fieldrow">
+						<div class="col-xs-12 col-sm-4 col-lg-4" translate>
+							Japanese
+						</div>
+						<div class="col-xs-12 col-sm-8 col-lg-8">
+							<input type="text" class="form-control" data-ng-model="fieldvalues.ja"  />
+						</div>
+				</div>
+				<div class="row fieldrow">
+						<div class="col-xs-12 col-sm-4 col-lg-4" translate>
+							Portuguese
+						</div>
+						<div class="col-xs-12 col-sm-8 col-lg-8">
+							<input type="text" class="form-control" data-ng-model="fieldvalues.pt"  />
+						</div>
+				</div>
+				<div class="row fieldrow">
+						<div class="col-xs-12 col-sm-4 col-lg-4" translate>
+							Russian
+						</div>
+						<div class="col-xs-12 col-sm-8 col-lg-8">
+							<input type="text" class="form-control" data-ng-model="fieldvalues.ru"  />
+						</div>
+				</div>
+				<div class="row fieldrow">
+						<div class="col-xs-12 col-sm-4 col-lg-4" translate>
+							Spanish
+						</div>
+						<div class="col-xs-12 col-sm-8 col-lg-8">
+							<input type="text" class="form-control" data-ng-model="fieldvalues.es"  />
+						</div>
+				</div>
+				<div class="row fieldrow">
+						<div class="col-xs-12 col-sm-4 col-lg-4" translate>
+							Swedish
+						</div>
+						<div class="col-xs-12 col-sm-8 col-lg-8">
+							<input type="text" class="form-control" data-ng-model="fieldvalues.sv"  />
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-1">
+		<data-validation-indicator data-ng-if="fieldname=='name'" data-fieldname="fieldname" data-model="fieldvalues.en" data-result="result"></data-validation-indicator>
+		<data-validation-indicator data-ng-if="fieldname=='description'" data-fieldname="fieldname" data-model="fieldvalues.en" data-result="result"></data-validation-indicator>
+	</div>
+</div>

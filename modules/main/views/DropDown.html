@@ -1,0 +1,14 @@
+<div class="dropdown-parent" data-ng-click="$event.stopPropagation()">
+	<div class="panel panel-default no-bottom-margin level-10 dropdown">
+		<ul class="nav nav-tabs tab-header">
+			<li data-ng-class="getDropDownTabClass('users')" data-ng-click="setDropDownType('users')"><a translate>Users</a></li>
+			<li data-ng-class="getDropDownTabClass('groups')" data-ng-click="setDropDownType('groups')"><a translate>Groups</a></li>
+			<li data-ng-class="getDropDownTabClass('containers')" data-ng-click="setDropDownType('containers')"><a translate>Containers</a></li>
+			<li data-ng-class="getDropDownTabClass('roles')" data-ng-click="setDropDownType('roles')"><a translate>Roles</a></li>
+		</ul>
+		<data-insert-to-list data-name="users" data-approvers="approvers" data-ng-show="isDropDownTypeVisible('users')"></data-insert-to-list>
+		<data-insert-to-list data-name="groups" data-approvers="approvers" data-ng-show="isDropDownTypeVisible('groups')"></data-insert-to-list>
+		<data-tree-container data-approvers="approvers" data-ng-show="isDropDownTypeVisible('containers')"></data-tree-container>
+		<data-insert-to-list data-name="roles" data-approvers="approvers" data-ng-show="isDropDownTypeVisible('roles')"></data-insert-to-list>
+	</div>
+</div>

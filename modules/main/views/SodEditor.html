@@ -1,0 +1,145 @@
+<div id="sod-editor" class="panel panel-default sod-editor sod-editor-shadow no-bottom-margin" data-ng-click="$root.emitClickEvent('editor', $event)" ng-keydown="detectEsc($event)?cancelEditing():void(0)" ng-init="loadSelectedSod(sod)">
+	<div class="panel-heading">
+		<div class="panel-title sod-editor-label" data-ng-if="!isCreate()">{{data.name}}</div>
+		<div class="btn-group pull-right">
+			<button id ="updateSodButton" class="btn btn-default margin-right-6" data-ng-if="isUpdate()" data-ng-click="updateSod()" data-ng-disabled="!isValidSod(idValid)" translate>Update</button>
+			<button class="btn btn-default margin-right-6" data-ng-if="isCreate()" onclick="addExtraHeight()" data-ng-click="createSod()" data-ng-disabled="!isValidSod()" translate>Apply</button>
+			<button id="deleteSodButton" class="btn btn-default margin-right-6" data-ng-if="isUpdate()" data-ng-click="deleteSod()" translate>Delete</button>
+			<button id ="cancelSodEditButton" class="btn btn-default margin-right-6" onclick="removeExtraHeight()"  data-ng-click="cancelEditing()" translate>Cancel</button>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+
+	<div class="panel-body">
+        <form name ="sodEditorForm">
+        <div class="row" data-ng-if="isCreate()">
+			<div class="col-xs-11">
+				<div class="form-group">
+					<div class="row fieldrow">
+						<div class="col-xs-12 col-sm-4 col-lg-4" translate=""><label><span class="ng-scope">ID<sup>*</sup></span></label></div>
+						<div class="col-xs-12 col-sm-8 col-lg-8">
+							<input id="sodIdInput" type="text" class="form-control ng-pristine ng-untouched ng-valid" data-ng-model="data.sod.id" data-ng-change="setNameAsId()">
+                            idValid : {{idValid}}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-1">
+				<data-validation-indicator data-type="id" data-model="data.sod.id" data-result="idValid"></data-validation-indicator>
+			</div>
+		</div>
+		
+		<data-localized-inputfield data-fieldname="name" data-fieldvalues="data.sod.name" data-result="nameValid"></data-localized-inputfield>
+		<data-localized-inputfield data-fieldname="description" data-fieldvalues="data.sod.description" data-result="descValid"></data-localized-inputfield>
+
+		<data-roles-dropdown data-roleslist = "data.rolesList" data-roleid="1" data-selectedRole="selected_role_1" data-result="role1Valid" data-loading="data.sodRolesLoading" data-role1visible="role1visible" data-role2visible="role2visible"></data-roles-dropdown>
+		<data-roles-dropdown data-roleslist = "data.rolesList" data-roleid="2" data-selectedRole="selected_role_2" data-result="role2Valid" data-loading="data.sodRolesLoading" data-role1visible="role1visible" data-role2visible="role2visible"></data-roles-dropdown>
+						
+		<div class="row">
+			<div class="col-xs-11">
+				<div class="form-group">
+					<div class="row fieldrow">
+						<div class="col-xs-12 col-sm-4 col-lg-4" translate=""><label><span class="ng-scope">Approval Required <sup>*</sup></span></label></div>
+						<div class="col-xs-12 col-sm-8 col-lg-8">
+                            <select class="approvalRequiredSelect" ng-model="approvalRequired" id="approvalRequiredControl" ng-options="approval as approval.label for approval in approvalRequiredOptions" ng-change="approvalRequiredChanged(approvalRequired)"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-xs-1">
+                <data-validation-indicator data-type="approvalRequired" data-model="data.sod.sodApprovalType" data-result="approvalRequiredValid"></data-validation-indicator>
+            </div> -->
+        </div>
+        <div id="Approval_Processs_Section" class="last-section" ng-show="approvalRequired.value">
+            <div class="row">
+                <div class="col-xs-11">
+                    <div class="form-group">
+                        <div class="row fieldrow">
+                            <div class="col-xs-12 col-sm-4 col-lg-4" translate=""><label><span class="ng-scope">Approval Definition:</span></label></div>
+                            <div class="col-xs-12 col-sm-8 col-lg-8">
+                                Role Approval
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-11">
+                    <div class="form-group">
+                        <div class="row fieldrow">
+                            <div class="col-xs-12 col-sm-4 col-lg-4" translate=""><label><span class="ng-scope">Approval Type:</span></label></div>
+                            <div class="col-xs-12 col-sm-8 col-lg-8">
+                                {{approvalType_label()}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-xs-11">
+                    <div class="form-group">
+                        <div class="row fieldrow">
+                            <div class="col-xs-12 col-sm-4 col-lg-4" translate=""><label><span class="ng-scope">Use Default Approvers: </span></label></div>
+                            <div class="col-xs-12 col-sm-8 col-lg-8">
+                                <select class="defaultApprovalSelect" ng-model="defaultApproval" id="defaultApprovalSelect" ng-options="df_approval as df_approval.label for df_approval in defaultApprovalOptions" ng-change="defaultApprovalChanged(defaultApproval)"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="defaultApproval.value">
+                <div class="row">
+                    <div class="col-xs-11">
+                        <div class="form-group">
+                            <div class="row fieldrow">
+                                <div class="col-xs-12 col-sm-4 col-lg-4" translate=""><label><span class="ng-scope">Default Approvers: </span></label></div>
+                                <div class="col-xs-12 col-sm-8 col-lg-8">
+                                    <div class="sodDefaultApproversListing">    
+                                        <table id="DefaultApproversContainer">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" style="vertical-align: middle;">
+                                                        <table class="nv-checkBoxTable sodApproversListingTable">
+                                                            <tbody>
+                                                                <tr data-ng-repeat="approvers in data.defaultApprovers">
+                                                                    <td>
+                                                                        <div>{{approvers.name}}</div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-hide="defaultApproval.value">
+                <div class="row">
+                    <div class="col-xs-11">
+                        <div class="form-group">
+                            <div class="row fieldrow">
+                                <div class="col-xs-12 col-sm-4 col-lg-4" translate=""><label><span class="ng-scope">Approvers: </span></label></div>
+                                <div class="col-xs-10 col-sm-7 col-lg-7">
+                                    <data-tag-container data-approvers="data.sod.approvers" data-selectedApprover = "selectedApprover" class="approvers_selection"></data-tag-container>
+                                </div>
+                                <div class="col-xs-2 col-sm-1 col-lg-1" data-ng-if="!isQuorum()">
+                                	<div class="row">
+                                		<button class="glyphicon glyphicon-arrow-up glyphicon-small cursor-pointer up-approver" data-ng-click="upApprover()"></button>
+                                		<button class="glyphicon glyphicon-arrow-down glyphicon-small cursor-pointer down-approver" data-ng-click="downApprover()"></button>
+                                	</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form> 
+	</div>
+</div>

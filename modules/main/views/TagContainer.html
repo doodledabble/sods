@@ -1,0 +1,26 @@
+<div class="tag-container limit-height-10" data-ng-if="approvers.length > 0" data-ng-click="$root.emitClickEvent('tagcontainer', $event)">
+	<div class="tag-item no-select" data-ng-repeat="approver in approvers" ng-click="selectApprover(approver)" ng-class="{'active': isSelectedApprover(approver)}">
+		<table width="100%">
+			<tr>
+				<!-- <td width="5%" style="vertical-align: middle; text-align: center;">
+					<input type="radio" name="select_approver" ng-value="selectedApprover.dn" ng-checked="isSelectedApprover(approver)"/>
+				</td> -->
+				<td width="5%" style="vertical-align: middle; text-align: center;"><span class="icon-small" data-ng-class="'icon-' + approver.type"></span></td>
+				<td width="90%">{{approver.name}}</td>
+				<!--<td width="5%" style="vertical-align: middle; text-align: center;"><button class="glyphicon glyphicon-arrow-up glyphicon-small cursor-pointer up-approver" data-ng-click="removeApprover(approver)"></button></td>
+				<td width="5%" style="vertical-align: middle; text-align: center;"><button class="glyphicon glyphicon-arrow-down glyphicon-small cursor-pointer down-approver" data-ng-click="removeApprover(approver)"></button></td>-->
+				<td width="5%" style="vertical-align: middle; text-align: center;"><button class="glyphicon glyphicon-remove glyphicon-small cursor-pointer remove-approver" data-ng-click="removeApprover(approver)"></button></td>
+			</tr>
+		</table>
+		<!--
+		<small><span class="icon-small" data-ng-class="'icon-' + approver.type"></span></small>
+		<small>{{approver.name}}</small>
+		<small><span class="glyphicon glyphicon-remove glyphicon-small cursor-pointer level-100 remove-approver" data-ng-click="removeApprover(approver)"></span></small>-->
+	</div>
+</div>
+
+<div class="btn-select-approvers" data-ng-click="showDropDown(true,$event)" translate>
+	 Select Approvers
+</div>
+
+<data-drop-down data-ng-if="isDropDownVisible()" data-approvers="approvers"></data-drop-down>

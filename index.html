@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>NetIQ Identity Manager SOD Catalog</title>
+		<link id="favicon" rel="shortcut icon" type="image/png" href="images/favicon.png">
+
+	<!-- SCRIPTS GOES HERE -->
+		<script src="lib/jquery.min.js"></script>
+		<script src="lib/angular.min.js"></script>
+		<script src="lib/angular-cookies.min.js"></script>
+		<script src="lib/angular-resource.min.js"></script>
+		<script src="lib/angular-sanitize.min.js"></script>
+		<script src="lib/angular-gettext.min.js"></script>
+
+		<script src="modules/commons/authentication/main.js"></script>
+		<script src="modules/commons/authentication/configurations/config.js"></script>
+		<script src="modules/commons/authentication/constants/authDetails.js"></script>
+		<script src="modules/commons/authentication/factories/Logout.js"></script>
+		<script src="modules/commons/authentication/services/authInterceptor.js"></script>
+		<script src="modules/commons/confirm/main.js"></script>
+		<script src="modules/commons/confirm/directives/confirmDialog.js"></script>
+		<script src="modules/commons/confirm/controllers/confirmDialogCtrl.js"></script>
+		<script src="modules/commons/feedback/main.js"></script>
+		<script src="modules/commons/feedback/directives/feedbackDir.js"></script>
+		<script src="modules/commons/feedback/controllers/feedbackCtrl.js"></script>
+		<script src="modules/commons/utilities/main.js"></script>
+		<script src="modules/commons/utilities/services/httpUtils.js"></script>
+		<script src="modules/commons/utilities/services/variableUtils.js"></script>
+		<script src="modules/commons/doFocus/main.js"></script>
+        <script src="modules/commons/doFocus/directives/doFocus.js"></script>
+ 		<script src="modules/commons/detectKeys/main.js"></script>
+        <script src="modules/commons/detectKeys/services/detectKeys.js"></script>
+        <script src="modules/commons/tree/main.js"></script>
+        <script src="modules/commons/tree/directives/tree.js"></script>
+        <script src="modules/commons/tree/controllers/treeCtrl.js"></script>
+
+
+		<script src="modules/main/main.js"></script>
+		<script src="modules/main/config/config.js"></script>
+		<script src="modules/main/controllers/RootCtrl.js"></script>
+		<script src="modules/main/services/SodConstants.js"></script>
+		<script src="modules/main/services/HeaderInterceptor.js"></script>
+		<script src="modules/main/services/Sod.js"></script>
+		<script src="modules/main/services/Localization.js"></script>
+		<script src="modules/main/directives/SodList.js"></script>
+		<script src="modules/main/controllers/SodListCtrl.js"></script>
+		<script src="modules/main/directives/SodEditor.js"></script>
+		<script src="modules/main/controllers/SodEditorCtrl.js"></script>
+        <script src="modules/main/directives/TagContainer.js"></script>
+        <script src="modules/main/controllers/TagContainerCtrl.js"></script>
+        <script src="modules/main/directives/DropDown.js"></script>
+        <script src="modules/main/directives/InsertToList.js"></script>
+        <script src="modules/main/controllers/InsertToListCtrl.js"></script>
+        <script src="modules/main/directives/RolesDropDown.js"></script>
+        <script src="modules/main/controllers/RolesDropDownCtrl.js"></script>
+        <script src="modules/main/directives/LocalizedInputField.js"></script>
+        <script src="modules/main/controllers/LocalizedInputFieldCtrl.js"></script>
+        <script src="modules/main/filters/ExcludeList.js"></script>
+        <script src="modules/main/filters/MemberType.js"></script>
+        <script src="modules/main/directives/ValidationIndicator.js"></script>
+        <script src="modules/main/controllers/ValidationIndicatorCtrl.js"></script>
+
+
+	<!-- CSS GOES HERE -->
+		<link rel="stylesheet" href="styles/bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" href="styles/sods/main.css">
+        <link rel="stylesheet" href="styles/sods/custom.css">
+	</head>
+
+	<body data-ng-controller="RootCtrl">
+		<data-confirm-dialog></data-confirm-dialog>
+		<div id="sodEditorDiv" class="sod-content" data-ng-if="$root.isAuthorized()&&!$root.isLoading()"  data-ng-click="$root.emitClickEvent('content', $event); $root.emitClick()">
+			<div class="container">
+				<!-- ALL CONTENTS WILL GO HERE -->
+				<data-sod-list></data-sod-list>
+				<!-- CONTENT ENDS -->
+			</div>
+		</div>
+		<script>
+		var extraHeightAdded;
+		function addExtraHeight() {
+			var div= document.getElementById('sodEditorDiv');
+			var hasVerticalScrollbar= div.scrollHeight>div.clientHeight;
+    		if(hasVerticalScrollbar == false){
+				var heightToAdd = div.clientHeight+500;
+				div.style.height= heightToAdd+'px';
+				extraHeightAdded=true;
+			}
+		}
+		function removeExtraHeight() {
+			if(extraHeightAdded==true){
+				var div= document.getElementById('sodEditorDiv');
+    			var heightToRemove = div.clientHeight-500;
+				div.style.height= heightToRemove+'px';
+				extraHeightAdded=false;
+			}
+		}
+		</script>
+	</body>
+</html>	

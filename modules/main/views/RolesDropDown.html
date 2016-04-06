@@ -1,0 +1,97 @@
+<div class="row">
+        <div class="col-xs-11">
+            <div class="form-group">
+                <div class="row fieldrow">
+                    <div class="col-xs-12 col-sm-4 col-lg-4" translate=""><label><span class="ng-scope">Conflicting Role {{roleid}}<sup>*</sup></span></label></div>
+                    <div class="col-xs-12 col-sm-8 col-lg-8"><!-- select role starts -->
+                        <div class="multiValueWidget" id="conflictingRoleControl">
+                            <div class="multiLabel" data-ng-click="showDropDown(true,$event)">
+                                <div class="valuesScrollable">
+                                    <div class="singleValueDropDownStyle">
+                                        {{role_label}}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="loading-indicator center-text" data-ng-if="isRolesListLoading()" translate>
+                                        Loading {{name | translate}} ...
+                                    </div> -->
+                            <div class="positionRelative" data-ng-click="$event.stopPropagation()">
+                                <div id="sodRolesPanel" class="sodRolesPanel" data-ng-show="isDropDownVisible()">
+                                    <div>
+                                        <input class="sodRoleSearch" placeholder="Search Role"
+                                        type="text" data-ng-model="data.query" data-ng-change="searchRolesHandler()">
+                                    </div>
+                                    <div class="sodRolesListing" id="addSodRolesListGrid">
+                                        <table cellpadding="0" cellspacing="0" class=
+                                        "noCheckbox noHeader" id="addSodRolesListGridTable"
+                                        style="width: 100%;">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" style=
+                                                    "vertical-align: middle;">
+                                                        <table class="nv-checkBoxTable" id=
+                                                        "addSodRolesListGridTable_cbTable"
+                                                        style="width: 100%;">
+                                                            <colgroup>
+                                                                <col>
+                                                            </colgroup>
+                                                            <tbody>
+                                                                <tr class="headerRowFormatter">
+                                                                    <td>Roles</td>
+                                                                </tr>
+                                                                <tr data-ng-if="isRolesListLoading()">
+                                                                    <td>
+                                                                        <div class="loading-indicator center-text " translate>
+                                                                        Loading {{loadName | translate}} ...
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr data-ng-if="!isRolesListLoading() && roleslist.length==0">
+                                                                    <td>
+                                                                        <div class="center-text pad-top-10" translate>
+                                                                            No more {{loadName | translate}} are available for selection.
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <!-- start : list roles in dropdown -->
+                                                                <tr data-ng-repeat="role in roleslist" class="rowFormatterOdd" data-ng-click="selectRole(role,roleid)">
+                                                                    <td>
+                                                                        <div class="listedRow">
+                                                                            <div class=
+                                                                            "largeText clickable">
+                                                                                {{role.name}}
+                                                                            </div>
+                                                                            <div class=
+                                                                            "annotationTwoLines">
+                                                                            <span class=
+                                                                            "supplimentaryHeader">
+                                                                                Description:</span>
+                                                                                <span class=
+                                                                                "supplimentary">
+                                                                                {{role.description}}
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <!-- end : list roles in dropdown -->
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- select role ends -->
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-1">
+        <data-validation-indicator data-ng-if="roleid=='1'" data-type="role" data-model="selectedrole" data-result="result"></data-validation-indicator>
+        <data-validation-indicator data-ng-if="roleid=='2'" data-type="role" data-model="selectedrole" data-result="result"></data-validation-indicator>
+    </div>
+</div>

@@ -1,0 +1,4 @@
+faults
+{"Fault":{"Code":{"Value":"Sender","Subcode":{"Value":"InvalidInput"}},"Reason":{"Text":"Sod id is required."}}}
+
+{"Fault":{"Code":{"Value":"Sender","Subcode":{"Value":"SecurityException"}},"Reason":{"Text":"You are unauthorized to perform this operation"}}}

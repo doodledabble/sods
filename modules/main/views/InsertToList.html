@@ -1,0 +1,17 @@
+<div class="margin-5">
+	<input id="sodMemberSearchField_{{name}}" class="search form-control" type="text" placeholder="{{getPlaceholder()}}" data-ng-model='query' data-ng-show="showSearch()" ng-model-options="{debounce: 1000}"/>
+	<div class="panel panel-default margin-top-5 no-bottom-margin">
+		<div class="list-group limit-height-10">
+			<a class="list-group-item" data-ng-show="!loadingList" data-ng-click="addToApprover(item)" data-ng-repeat="item in source | ExcludeList:approvers | limitTo : 300"><span class="icon-normal" data-ng-class="'icon-normal-' + item.type"></span>{{item.name}}</a>
+			<div class="list-group-item" data-ng-if="!loadingList && (source|ExcludeList:approvers).length==0" translate>
+				No more {{name | translate}} are available for selection.
+			</div>
+			<div class="list-group-item loading-indicator center-text" data-ng-if="loadingList" translate>
+				Loading {{name | translate}} ...
+			</div>
+		</div>
+		<div class="alert alert-warning" data-ng-if="!loadingList && source.length>251" translate>
+			Too many {{name | translate}} to display, Please refine your search.
+		</div>
+	</div>
+</div>

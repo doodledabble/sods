@@ -1,0 +1,282 @@
+        .multiValueWidget {
+            display: inline-block;
+            width: 100%;
+        }
+        .multiLabel, .mapResourcesValuePanel {
+    border: thin solid lightgray;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.15) inset;
+    font-size: inherit;
+    line-height: inherit;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+        .valuesScrollable {
+    max-height: 108px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+}
+        .singleValueDropDownStyle {
+    padding-top: 5px;
+    padding-bottom: 7px;
+    margin-left: 5px;
+    cursor: pointer;
+    background: url("../../images/downwards-triangle.png") no-repeat scroll 99% 6px transparent;
+    background-size: 10px 16px;
+    padding-right: 24px;
+}
+        .sodRolesPanel {
+    position: absolute;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid darkgray;
+    border-radius: 4px 4px 4px 4px;
+    margin-top: -1px;
+    background-color: white;
+    z-index: 100;
+}
+        .positionRelative {
+    position: relative;
+}
+        input.sodRoleSearch {
+    margin-left: 1px;
+    margin-right: 1px;
+    padding-left: 4px;
+    line-height: 26px;
+    cursor: pointer;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    border-style: none;
+    border: thin solid lightgray;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 0 0 rgba(0,0,0,0.2);
+    outline: 0;
+    background: url("../../images/icon_search.png") no-repeat scroll 99% transparent;
+    padding-right: 24px;
+}
+.sodRolesListing {
+    height: auto;
+    /*min-height: 50px;*/
+    max-height: 182px;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+   background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    margin-top: 4px;
+    margin-bottom: 2px;
+    z-index: 200;
+    width: 100%;
+}
+
+.sodRolesListing .pad-top-10{
+    padding-top: 10px;
+}
+        .nv-checkBoxTable {
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+        .noHeader .headerRowFormatter {
+    display: none;
+}
+        .headerRowFormatter td {
+    font-size: 12px;
+}
+        .headerRowFormatter td {
+    background-image: url(table/level_one_pattern4t.png);
+    background-repeat: repeat-x;
+    background-color: #d6d8d3;
+    border-bottom: 1px solid #273961;
+    font-weight: normal;
+    font-size: .75em;
+    white-space: nowrap;
+    padding: 2px 10px 2px 0px;
+}
+        .ua-header-label {
+    padding-left: 4px;
+    margin-bottom: 2px;
+    display: inline;
+}
+        /*tr.rowFormatterOdd td.highlight,tr.rowFormatterEven td.highlight {
+            background-color: #f6f5f6;
+        }*/
+        .listedRow {
+    padding: 6px 10px;
+}
+        .largeText {
+    font-size: 14px;
+    line-height: 15px;
+}
+        .clickable {
+    color: #0087cd;
+    cursor: pointer;
+}
+        .annotationTwoLines {
+    max-height: 18px;
+    overflow: hidden;
+}
+        .supplimentaryHeader {
+    font-size: 13px;
+    line-height: 14px;
+    color: gray;
+}
+        .supplimentary {
+    font-size: 12px;
+    line-height: 16px;
+    color: #aaa;
+}
+
+.rowFormatterOdd:hover td, .rowFormatterEven:hover td {
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.approvalRequiredSelect, .defaultApprovalSelect{
+    width: 100%;
+    border-radius: 4px;
+    margin-top: 0;
+    padding: 4px 1px;
+    border: thin solid lightgray;
+    font-size: 12px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.15) inset;
+    height: 28px;
+    cursor: pointer;
+}
+
+ .sodDefaultApproversListing {
+        min-height: 90px;
+        max-height: 120px;
+        overflow: scroll;
+        -webkit-overflow-scrolling: touch;
+        overflow-x: hidden;
+        background-color: #f6f6f6;
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+        z-index: 200;
+        width: 100%;
+    }
+        #DefaultApproversContainer {
+            width: 100%;
+        }
+        .sodApproversListingTable {
+            width: 100%;
+        }
+        .sodApproversListingTable tr:hover {
+            background-color: #a6d5ee;
+        }
+        .sodApproversListingTable tr td {
+            padding: 3px 5px;
+        }
+.approvers_selection .tag-container {
+    padding: 5px;
+    border: 1px solid #DDD;
+    margin: 0px;
+    border-radius: 4px 4px 0 0;
+    border-bottom: 0;
+    max-height: 10em;
+    overflow-y: auto;
+}
+.approvers_selection .tag-item {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #B5B5B5;
+    display: inline-block;
+    width: 100%;
+    margin: 0px;
+    padding: 3px 7px;
+    background-color: #ccc;
+    color: #363636;
+    box-shadow: 0 0 5px rgba(187,188,194,.04);
+}
+.approvers_selection .tag-item.active {
+    background-color : #a6d5ee;
+}
+.btn-select-approvers {
+    display: block;
+    color: #DDD;
+    line-height: 32px;
+    border: 1px solid #DDD;
+    margin: 0px;
+    padding: 0px 5px;
+    border-radius: 4px;
+
+}
+
+.approvers_selection .tag-container.limit-height-10 + .btn-select-approvers {
+    margin: 0px;
+    border-top: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.approvers_selection .dropdown-parent > .dropdown {
+    left: 0px;
+    right: 0px;
+    top: 5px;
+    position: absolute;
+    border-top: none;
+}
+
+.conflicting_role_image {
+    width:8px;
+    height:16px;
+    background:url('../../images/sod_icons.png') no-repeat -484px -16px;
+    vertical-align: middle;" 
+    border="0"
+
+}
+
+.remove-approver {
+    padding: 3px;
+    display: block;
+    margin: 0px auto;
+}
+
+.up-approver {
+    padding: 3px;
+    display: block;
+    margin: 0px 0px 0px 1px;
+    display: inline-block;
+}
+
+.down-approver {
+    padding: 3px;
+    display: block;
+    margin: 0px 1px 0px 0px;
+    display: inline-block;
+}
+
+.icon-normal-role {
+    margin-bottom: -1px;
+    background: url('../../images/icon_roles.png') no-repeat;
+    background-size: 16px 16px;
+}
+
+/*.icon-container {
+    margin-bottom: -1px;
+    background: url('../../images/icon_container.png') no-repeat;
+    background-size: 16px 16px;
+}*/
+
+.rootDirectoryLabel {
+    padding: 5px 5px 5px 20px;
+}
+
+
+.loading-indicator {
+    background: rgba(255, 255, 255, 0.75) url('../../images/indicator.gif') no-repeat scroll 48% 66%;
+}
+
+.last-section {
+    padding-bottom: 20px;
+}
+
+.validation-error-message {
+    z-index: 10;
+}
+.indicator-text {
+    margin-top: 5px;
+}

@@ -1,0 +1,67 @@
+<div data-ng-if="status != null">
+	<div class="panel-default padding-5 feedback">
+		<a href="#" class="close" data-ng-click="cancelMessage()"><img src="images/delete.png"></a>
+		<div data-ng-if="succeededItems != null">
+			<h3 class="feedback-header">{{successHeading}}</h3>
+			<div data-ng-init="showSucceededItems=false">
+				<div>
+					<label class="successMessage">
+	            	<a href="" data-ng-show="!showSucceededItems" data-ng-click="showSucceededItems=!showSucceededItems"><img src="images/right-triangle.png"></a>
+				    <a href="" data-ng-show="showSucceededItems" data-ng-click="showSucceededItems=!showSucceededItems"><img src="images/downwards-triangle.png"></a>
+				    {{subSuccessHeading}}({{succeededItems.length}})
+				</label>
+				</div>
+				<div data-ng-show="showSucceededItems" class="placement">
+					<div data-ng-repeat="item in succeededItems">
+				    	<div data-ng-init="showSucceededItemsDetails=false">
+				        	<label class="placement">
+				            	<a href="" data-ng-show="!showSucceededItemsDetails" data-ng-click="showSucceededItemsDetails=!showSucceededItemsDetails"><img src="images/right-triangle.png"></a>
+				                <a href="" data-ng-show="showSucceededItemsDetails" data-ng-click="showSucceededItemsDetails=!showSucceededItemsDetails"><img src="images/downwards-triangle.png"></a>
+				                <!--{{item.name}}-->
+				                Sod Name
+				            </label>
+				            <div data-ng-if="item.id != null" data-ng-show="showSucceededItemsDetails" class="placement-inner">
+				            	DN : {{item.id}}
+				            </div>
+				        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div data-ng-if="failedItems != null">
+			<h3 class="feedback-header">{{failureHeading}}</h3>
+			<div data-ng-init="showFailedItems=false">
+				<label class="errorMessage">
+					<a href="" data-ng-show="!showFailedItems" data-ng-click="showFailedItems=!showFailedItems"><img src="images/right-triangle.png"></a>
+				    <a href="" data-ng-show="showFailedItems" data-ng-click="showFailedItems=!showFailedItems"><img src="images/downwards-triangle.png"></a>
+				    {{subFailureHeading}}({{failedItems.length}})
+				</label>
+				<div data-ng-show="showFailedItems" class="placement">
+					<div data-ng-repeat="item in failedItems">
+				    	<div data-ng-init="showFailedItemsDetails=false">
+				        	<label class="placement">
+				            	<a href="" data-ng-show="!showFailedItemsDetails" data-ng-click="showFailedItemsDetails=!showFailedItemsDetails"><img src="images/right-triangle.png"></a>
+				                <a href="" data-ng-show="showFailedItemsDetails" data-ng-click="showFailedItemsDetails=!showFailedItemsDetails"><img src="images/downwards-triangle.png"></a>
+				                <!--{{item.name}}-->
+				                Sod Name
+							</label>
+				            <div data-ng-if="item.reason != null" data-ng-show="showFailedItemsDetails" class="placement-inner">
+				               <translate>Reason</translate>  : {{item.reason}}<br/>
+				               <translate>DN</translate> : {{item.id}}
+				            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div data-ng-if="feedback != null" class="panel-default padding-5">
+	<div class="feedback-message">
+		<a href="#" class="close" data-ng-click="cancelMessage()"><img src="images/delete.png"></a>
+		<div data-ng-if="feedbackHeading != null">
+			{{feedbackHeading}}<br/>
+		</div>
+		{{feedback}}
+	</div>
+</div>

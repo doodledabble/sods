@@ -1,0 +1,47 @@
+<div id="mainHeader">
+	<div class="" id="mainHeaderContainer">
+		<div id="headerleft">
+			<div id="headerlogo"></div>
+			<span class="headertitle no-select cursor-default" id="header_title"><span class="icon-header team-icon"></span><translate>Teams</translate></span>
+		</div>
+		<div id="headerright">
+			<div id="header_actionsBlock">
+				<span id="headerstring"></span>
+				<div id="headerMenuIcon"></div>
+				<div id="headerName">
+					<a class="userNameHeader">{{user}}</a>
+					<div id="headerLogoutHelp">
+						<div class="logoutHelpArrowUp"></div>
+						<div title="{{'Logout' | translate}}" class="main-menuItem"
+							id="headerMenuItem_logout" ng-click="logout()">
+							<a href="#" data-ng-click="logout()" translate>Logout</a>
+						</div>
+						<div title="{{'Help' | translate}}" class="main-menuItem" id="headerMenuItem_help">
+							<a href="https://www.netiq.com/documentation/idm45/catalog_administrator/data/front.html" translate>Help</a>
+						</div>
+						<div title="{{'About' | translate}}" class="main-menuItem" id="headerMenuItem_about">
+							<a href="#" data-ng-click="getVersionInfo()" translate>About</a>
+						</div>
+					</div>
+					<div class="logoutHelpArrowDown"></div>
+				</div>
+				<a title="{{'Identity Manager Home'|translate}}" id="landingLink" href="/landing"
+					class="gwt-Anchor floatRight"></a>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="headerFill"></div>
+
+<div class="mainPopupPanel" id="mainAboutPopup" data-ng-show="showAboutPage">
+	<div class="popupContent">
+		<div id="mainAboutPanel">
+			<div id="mainAboutContent">
+				<div id="mainAboutTitle" translate>NetIQ Identity Manager Catalog Administrator</div>
+				  <a href="" title="Close" id="mainAboutClose" ng-click="showAboutPage=false;"></a>
+				  <div id="mainAboutVersion" translate>NetIQ Identity Manager Catalog Administrator version {{versionInfo.version}} was built on {{versionInfo.date | date : 'fullDate'}} from revision {{versionInfo.revision.number}}</div>
+				  <div id="mainAboutCopyright">&copy; <translate>2015 NetIQ Corporation. All Rights Reserved.</translate></div>
+			</div>
+		</div>
+	</div>
+</div>
