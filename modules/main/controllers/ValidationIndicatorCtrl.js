@@ -7,7 +7,7 @@ angular.module('main')
 	// Set the class of parent div to add apropriate margins
 	var invalidCharsRegex = /[<>,;\"\\+#=/|&\\*\\\\]/g;
 	console.log("Validation Success : "+$scope.validationSuccess);
-	if($scope.validationSuccess==undefined)console.log("undefined validationSuccess");
+	// if($scope.validationSuccess==undefined)console.log("undefined validationSuccess");
 	$scope.validationSuccess = false;
 	var validationMessage = "";
 	$scope.enabled = false;

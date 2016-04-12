@@ -3,7 +3,7 @@
 		<div class="panel-title sod-editor-label" data-ng-if="!isCreate()">{{data.name}}</div>
 		<div class="btn-group pull-right">
 			<button id ="updateSodButton" class="btn btn-default margin-right-6" data-ng-if="isUpdate()" data-ng-click="updateSod()" data-ng-disabled="!isValidSod(idValid)" translate>Update</button>
-			<button class="btn btn-default margin-right-6" data-ng-if="isCreate()" onclick="addExtraHeight()" data-ng-click="createSod()" data-ng-disabled="!isValidSod()" translate>Apply</button>
+			<button class="btn btn-default margin-right-6" data-ng-if="isCreate()" onclick="addExtraHeight()" data-ng-click="createSod()" translate>Apply</button>
 			<button id="deleteSodButton" class="btn btn-default margin-right-6" data-ng-if="isUpdate()" data-ng-click="deleteSod()" translate>Delete</button>
 			<button id ="cancelSodEditButton" class="btn btn-default margin-right-6" onclick="removeExtraHeight()"  data-ng-click="cancelEditing()" translate>Cancel</button>
 		</div>

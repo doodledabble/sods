@@ -377,7 +377,16 @@ angular.module('main')
 				sod.localizedDescriptions.push(obj);
 		}
 
-		if(data.isDefaultApproversUsed || data.sodApprovalType=="allowWithWorkflow") {
+		if(typeof data.isDefaultApproversUsed == 'undefined' || data.isDefaultApproversUsed == null) {
+			sod.isDefaultApproversUsed = false;
+		}
+		else {
+			sod.isDefaultApproversUsed = data.isDefaultApproversUsed;
+		}
+		if(data.sodApprovalType) {
+			sod.sodApprovalType = data.sodApprovalType;
+		}
+		if(data.sodApprovalType=="allowWithWorkflow") {
 			if(data.approvers) {
 				sod.approvers = data.approvers;
 			}
@@ -568,14 +577,73 @@ angular.module('main')
 			error: false,
 			message: ''
 		};
-		if (typeof sod.name == 'undefined' || sod.name == null || sod.name == '') {
+
+		console.log("Validating SOD : "+JSON.stringify(sod));
+		if (typeof sod.id == 'undefined' || sod.id == null || sod.id == '') {
 			validationStatus.error = true;
-			validationStatus.message += gettextCatalog.getString(gettext('Sod name is not defined'))+'\n';
+			validationStatus.message += gettextCatalog.getString(gettext('Sod ID is not defined'))+'\n';
 		}
-		if (typeof sod.description == 'undefined' || sod.description == null || sod.description == '') {
+
+		if (typeof sod.name == 'undefined' || sod.name == null || sod.name == '' || typeof sod.name.en == 'undefined' || sod.name.en == null || sod.name.en == '') {
 			validationStatus.error = true;
-			validationStatus.message += gettextCatalog.getString(gettext('Sod description is not defined'))+'\n';	
+			validationStatus.message += gettextCatalog.getString(gettext('Sod Name is not defined'))+'\n';
 		}
+		if (typeof sod.description == 'undefined' || sod.description == null || sod.description == '' || typeof sod.description.en == 'undefined' || sod.description.en == null || sod.description.en == '') {
+			validationStatus.error = true;
+			validationStatus.message += gettextCatalog.getString(gettext('Sod Description is not defined'))+'\n';	
+		}
+
+		// if(sod.name) {
+		// 	if(typeof sod.name.en == 'undefined' || sod.name.en == null || sod.name.en == '') {
+		// 		validationStatus.error = true;
+		// 		validationStatus.message += gettextCatalog.getString(gettext('Sod Localized Name is not defined'))+'\n';
+		// 	}
+		// }
+
+		// if(sod.description) {
+		// 	if(typeof sod.description.en == 'undefined' || sod.description.en == null || sod.description.en == '') {
+		// 		validationStatus.error = true;
+		// 		validationStatus.message += gettextCatalog.getString(gettext('Sod Localized Description is not defined'))+'\n';
+		// 	}
+		// }
+		// if(typeof sod.isDefaultApproversUsed == 'undefined' || sod.isDefaultApproversUsed == null || sod.isDefaultApproversUsed == '') {
+		// 	validationStatus.error = true;
+		// 	validationStatus.message += gettextCatalog.getString(gettext('Sod DefaultApprover choice is not specified'))+'\n';
+		// }
+
+		if(typeof sod.roles == 'undefined' || sod.roles == null || Object.keys(sod.roles).length === 0 || typeof sod.roles[0] == 'undefined' || typeof sod.roles[1] == 'undefined') {
+			validationStatus.error = true;
+			validationStatus.message += gettextCatalog.getString(gettext('Sod Conflicting Roles are not defined'))+'\n';
+		} else {
+			if(sod.roles[0].id == sod.roles[1].id) {
+				validationStatus.error = true;
+				validationStatus.message += gettextCatalog.getString(gettext('Same Conflicting Roles selected'))+'\n';
+			}
+		}
+
+		if(typeof sod.sodApprovalType == 'undefined' || sod.sodApprovalType == null || sod.sodApprovalType == '' || !(sod.sodApprovalType == "alwaysAllow" || sod.sodApprovalType == "allowWithWorkflow")) {
+			validationStatus.error = true;
+			validationStatus.message += gettextCatalog.getString(gettext('Sod Approval Type is not defined'))+'\n';
+		} else {
+			if(sod.sodApprovalType == "alwaysAllow") {
+				sod.isDefaultApproversUsed = false;
+			} else if(sod.sodApprovalType == "allowWithWorkflow"){
+				if(typeof sod.isDefaultApproversUsed == 'undefined' || sod.isDefaultApproversUsed == null || sod.isDefaultApproversUsed == '') {
+					validationStatus.error = true;
+					validationStatus.message += gettextCatalog.getString(gettext('Sod DefaultApprover choice is not defined'))+'\n';
+				} else if (sod.isDefaultApproversUsed == true){
+					delete sod.approvers;
+				}
+			}
+		}
+		if(sod.sodApprovalType == "allowWithWorkflow" && sod.isDefaultApproversUsed == false) {
+			if(typeof sod.approvers == 'undefined' || sod.approvers == null ) {
+				validationStatus.error = true;
+				validationStatus.message += gettextCatalog.getString(gettext('Sod Approvers List is not defined'))+'\n';
+			}
+		}
+
+		console.log("Validation Error : "+validationStatus.error+", "+validationStatus.message);
 		// if (typeof sod.recipients.type == 'undefined' || sod.recipients.type == null) {
 		// 	validationStatus.error = true;
 		// 	validationStatus.message += gettextCatalog.getString(gettext('Recipient type is not defined'))+'\n';
